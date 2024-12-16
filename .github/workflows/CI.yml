@@ -18,8 +18,3 @@ jobs:
           org_repo: ${{ github.repository }}
           PR_details: ${{ github.event.pull_request.number }}
           github_token: ${{ secrets.B_TOKEN }}          
-
-      - name: Verify
-        run: |
-          echo "org_repo name : $org_repo"
-          echo "pr_num : $PR_details"

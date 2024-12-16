@@ -1,0 +1,42 @@
+name: Comment on PR Based on Test Result
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]  # Trigger on PR creation, synchronization, and reopening
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          # Simulate a test failure or success (replace with real test logic)
+          if [ 1500 -gt 15000 ]; then
+            echo "Test Passed"
+            echo "test-result=success" >> $GITHUB_ENV
+          else
+            echo "Test Failed"
+            echo "test-result=failure" >> $GITHUB_ENV
+          fi
+
+  comment:
+    runs-on: ubuntu-latest
+    needs: test  # Ensure this job runs after the 'test' job
+    if: ${{ needs.test.outputs.test-result == 'failure' }}  # Only runs if the test job result is failure
+
+    steps:
+      - name: Checkout code again (needed for comment)
+        uses: actions/checkout@v3
+        
+      - name: Comment on PR if test fails
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The tests have failed. Please check the errors and fix the issues before merging.

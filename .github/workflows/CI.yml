@@ -21,5 +21,5 @@ jobs:
 
       - name: Verify
         run: |
-          echo "$org_repo"
-          echo ${{ github.event.pull_request.number }}
+          echo "org_repo name : $org_repo"
+          echo "pr_num : $PR_details"

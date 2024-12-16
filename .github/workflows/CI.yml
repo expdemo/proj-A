@@ -19,9 +19,11 @@ jobs:
           if [ 1500 -gt 15000 ]; then
             echo "Test Passed"
             echo "test-result=success" >> $GITHUB_ENV
+            echo "::set-output name=test-result::success"
           else
             echo "Test Failed"
             echo "test-result=failure" >> $GITHUB_ENV
+            echo "::set-output name=test-result::failure"
           fi
 
   comment:

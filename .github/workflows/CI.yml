@@ -16,5 +16,5 @@ jobs:
         uses: expdemo/proj-B@main
         with:
           org_repo: ${{ github.repository }}
-          PR_details: ${{ github.event.pull_request }}
-          github_token: ${{ secrets.B_TOKEN }}          
+          PR_details: ${{ github.event.pull_request.number }}
+          github_token: ${{ secrets.B_TOKEN }}

@@ -18,4 +18,4 @@ jobs:
         with:
           org_repo: ${{ github.repository }}
           PR_details: ${{ github.event.pull_request.number }}
-          github_token: ${{ secrets.B_TOKEN }}
+          github_token: ${{ secrets.ACTIONS_TOKEN }}

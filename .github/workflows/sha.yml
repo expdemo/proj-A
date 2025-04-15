@@ -25,5 +25,5 @@ jobs:
     needs: Fetch_PR
     steps:
       - name: GET SHA
-        run: echo "$env.gitsha"
+        run: echo $env.gitsha
         

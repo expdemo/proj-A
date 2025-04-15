@@ -5,15 +5,25 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+env:
+  gitsha = ""
+
 jobs:
   Fetch_PR:
     runs-on: ubuntu-latest
-    
+  
     steps:
       - name: Checkout Repository 
         uses: actions/checkout@v3
 
       - name: GET SHA
         run: |
-          echo "xyz=${{ github.sha }}"
+          echo "xyz=${{ github.sha }} >> env.gitsha"
           echo $xyz
+  Fetch_SHA:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: GET SHA
+        run: echo $env.gitsha
+        

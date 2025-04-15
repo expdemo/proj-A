@@ -19,7 +19,7 @@ jobs:
       - name: GET SHA
         run: |
           echo "xyz=${{ github.sha }}" >> "env.gitsha"
-          echo ${{ xyz }}
+          echo "$xyz"
           echo ${{ env.gitsha }}
   Fetch_SHA:
     runs-on: ubuntu-latest

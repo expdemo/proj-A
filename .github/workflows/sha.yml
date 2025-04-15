@@ -1,0 +1,16 @@
+name: SHA
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  Fetch_PR:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository 
+        uses: actions/checkout@v3
+
+      - name: GET SHA
+        run: echo ${{ github.sha }}
